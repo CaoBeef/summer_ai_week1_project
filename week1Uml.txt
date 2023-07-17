@@ -18,3 +18,8 @@ block_friend
 send_message
 all_sent_messages
 
+Functionalities:
+Creating an Account:
+1. Ask for name, age, and password.
+2. Set the friendlist, receivedmessages, and sentmessages as empty lists.
+3. Instantiate the object and add it to a list consisting of all users.
