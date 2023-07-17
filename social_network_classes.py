@@ -17,22 +17,46 @@ class SocialNetwork:
         # hint: load a the json file from disk and look up how to recreate the list of people objects.
         pass
 
-    def  create_account(self):
+    def  create_account(self,new_name,new_age,new_password,new_friendlist,new_received_messages,new_sent_messages):
+        SocialNetwork.append(Person(new_name,new_age,new_password,[],[],[]))
         #implement function that creates account here
         print("Creating ...")
         pass
 
 
-class Person:
-    def __init__(self, name, age):
-        self.id = name
-        self.year = age
-        self.friendlist = []
+class Person():
+    def __init__(self,user_id,age,password,friendlist,receivedmessages,sentmessages):
+        self.user_id = user_id
+        self.age = age
+        self.password = password
+        self.friendlist = friendlist
+        self.receivedmessages = receivedmessages
+        self.sentmessages = sentmessages
 
     def add_friend(self, person_object):
+        self.friendlist.append(person_object)
         #implement adding friend. Hint add to self.friendlist
         pass
 
-    def send_message(self):
+    def send_message(self, message):
+        self.receivedmessages.append(message)
         #implement sending message to friend here
         pass
+
+    def edit_details(self):
+        new_age = input("Enter new age: ")
+        new_name = input("Enter new name: ")
+        self.year = new_age
+
+    def view_all_friends(self,username):
+        for persona in SocialNetwork:
+            if (persona.user_id == username):
+                for friend in persona.friendlist:
+                    print(friend)
+    
+    def block_friend(self,blocked_friend):
+        self.friendlist.remove(blocked_friend)
+        self.blockedlist.append(blocked_friend)
+    
+    def all_sent_messages(self,sent_message):
+        self.sentmessages.append(sent_message)
