@@ -1,0 +1,20 @@
+UML Diagram:
+
+Object: Person
+
+Attributes:
+name (str)
+age (int)
+password (str)
+friendlist (list)
+receivedmessages (list)
+sentmessages (list)
+
+Methods:
+create_account
+add_friend
+view_all_friends
+block_friend
+send_message
+all_sent_messages
+
