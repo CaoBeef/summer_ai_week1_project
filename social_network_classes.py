@@ -27,8 +27,8 @@ SocialNetwork = []
 
 
 class Person():
-    def __init__(self,user_id,age,password,friendlist,receivedmessages,sentmessages):
-        self.user_id = user_id
+    def __init__(self,name,age,password,friendlist,receivedmessages,sentmessages):
+        self.name = name
         self.age = age
         self.password = password
         self.friendlist = friendlist
