@@ -1,11 +1,11 @@
 #Various import Statements can go here
-from  social_network_classes import social_network,Person
+from  social_network_classes import SocialNetwork,Person
 import social_network_ui
 
 
 
 #Create instance of main social network object
-
+#ai_social_network = SocialNetwork()
 
 #The line below is a python keyword to specify which 
 if __name__ == "__main__":
@@ -13,7 +13,6 @@ if __name__ == "__main__":
     print("          Welcome to Summer AI Social Network")
     print("########################################################")
     last_menu = None
-    #restart menu
 while True:
     choice = social_network_ui.mainMenu()
     if choice == '1':
@@ -22,7 +21,7 @@ while True:
         login_bool = social_network_ui.userLogin()
         if login_bool == True:
             manage_choice = social_network_ui.manageAccountMenu()
-             #Handle inner menu here
+            #Handle inner menu here
         else:
             continue
         if manage_choice == '8':
@@ -35,14 +34,14 @@ while True:
                 updated_age = int(input("What would you like your new age to be? "))
                 updated_password = input("What would you like your new password to be? ")
                 updated_user_found = False
-                for person in social_network:
+                for person in SocialNetwork:
                     if (person.user_id == updated_userid):
-                        print("This username is already in use!")
+                        print("This name is already in use!")
                         updated_user_found = True
                 while not updated_user_found:
-                    for index in range(len(social_network)):
-                        if (social_network[index].user_id == current_userid) and (social_network[index].password == current_password):
-                            social_network[index] = Person(updated_userid,updated_age,updated_password,social_network[index].friendlist,social_network[index].receivedmessages,social_network[index].sentmessages)
+                    for index in range(len(SocialNetwork)):
+                        if (SocialNetwork[index].user_id == current_userid) and (SocialNetwork[index].password == current_password):
+                            SocialNetwork[index] = Person(updated_userid,updated_age,updated_password,SocialNetwork[index].friendlist,SocialNetwork[index].receivedmessages,SocialNetwork[index].sentmessages)
                             print("User info successfuly updated!") 
                             updated_user_found = True
                             break
@@ -51,23 +50,23 @@ while True:
                         updated_user_found = True
                         break
             if manage_choice == '2':
-                current_userid = input("What is your username? ")
+                current_userid = input("What is your name? ")
                 current_password = input("What is your password? ")
-                new_friend = input("What is the username of the friend you'd like to add? ")
+                new_friend = input("What is the name of the friend you'd like to add? ")
                 user_exist = True
-                for person1 in social_network:
+                for person1 in SocialNetwork:
                     if (person1.user_id == current_userid) and (person1.password == current_password):
                         user_exist = False
                         current_object = person1
-                        current_index = social_network.index(person1)
+                        current_index = SocialNetwork.index(person1)
                 if user_exist == True:
                     print("Incorrect credentials!")
                 while not user_exist:
-                    for person2 in social_network:
+                    for person2 in SocialNetwork:
                         if (person2.user_id not in current_object.friendlist):
                             if (person2.user_id == new_friend):
                                 person1.add_friend(new_friend)
-                                social_network[current_index] = person1
+                                SocialNetwork[current_index] = person1
                                 print("Friend added successfully!")
                                 user_exist = True
                                 break
@@ -79,7 +78,7 @@ while True:
                 current_userid = input("What is your name? ")
                 current_password = input("What is your password? ")
                 found_object = False
-                for person3 in social_network:
+                for person3 in SocialNetwork:
                     if (person3.user_id == current_userid) and (person3.password == current_password):
                         for element in person3.friendlist:
                             print(element)
@@ -91,7 +90,7 @@ while True:
                 current_password = input("What is your password? ")
                 blocked_friend = input("What is the name of the user you'd like to block? ")
                 found_blocked = False
-                for index2 in social_network:
+                for index2 in SocialNetwork:
                     if (index2.user_id == current_userid) and (index2.password == current_password):
                         for friend in index2.friendlist:
                             if blocked_friend == friend:
@@ -104,13 +103,13 @@ while True:
                 current_userid = input("What is your name? ")
                 current_password = input("What is your password? ")
                 found_recipient = False
-                for person1 in social_network:
+                for person1 in SocialNetwork:
                     if (person1.user_id == current_userid) and (person1.password == current_password):
                         sender = person1.user_id
                         sender_object = person1
                         message = input("What is the message you'd like to send? ")
                         recipient = input("What is the name of the recipient? ")
-                        for person2 in social_network:
+                        for person2 in SocialNetwork:
                             if (person2.user_id == recipient):
                                 person2.send_message(f'{sender}: {message}')
                                 person1.all_sent_messages(f'{sender}: {message}')
@@ -122,7 +121,7 @@ while True:
                 current_userid = input("What is your name? ")
                 current_password = input("What is your password? ")
                 found_user = False
-                for person3 in social_network:
+                for person3 in SocialNetwork:
                     if (person3.user_id == current_userid) and (person3.password == current_password):
                         found_user = True
                         for message in person3.receivedmessages:
@@ -133,12 +132,13 @@ while True:
                 current_userid = input("What is your name? ")
                 current_password = input("What is your password? ")
                 found_user = False
-                for person3 in social_network:
+                for person3 in SocialNetwork:
                     if (person3.user_id == current_userid) and (person3.password == current_password):
                         found_user = True
                         for message in person3.sentmessages:
                             print(message)
                 if found_user == False:
                     print("Couldn't find user!")
+                          #restart menu
     elif choice == '3':
         break
